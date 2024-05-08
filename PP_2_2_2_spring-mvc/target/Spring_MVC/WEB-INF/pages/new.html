@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+</head>
+<body>
+<div style="float: left; border: 3px solid chocolate; padding: 4px;">
+  <a style="border: 2px solid #6f2920; border-radius: 2px;text-decoration: none;padding: 3px;margin: 4px; width: 100px " href="/users">Show users</a>
+  <br>
+  <br>
+  <a style="border: 2px solid #6f2920; border-radius: 2px;text-decoration: none;padding: 3px;margin: 4px; width: 100px " href="/users/new">New user</a>
+  <br>
+  <br>
+
+  <div th:each="user : ${users}">
+    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a>
+  </div>
+</div>
+<div style="float: left;width: 300px; border: 3px solid chocolate; margin-left: 30px">
+  <form  th:method="POST" th:action="@{/users}" th:object="${user}">
+    <label for="name">Enter name</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <label for="surname">Enter surname</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <label for="name">Enter age</label>
+    <input type="text" th:field="*{age}" id="age">
+    <br>
+    <input type="submit" value="Create!">
+
+
+
+
+  </form>
+</div>
